@@ -6,7 +6,7 @@ class Program
 {
     // ここがクライアント側
     static private TalkStateMachine _talkStateMachine = new TalkStateMachine();
-    static string? _currentState;
+    static private string? _currentState;
 
     static void Main(string[] args)
     {
@@ -45,7 +45,7 @@ class Program
     }
 
     // ObserverパターンでState変更タイミングを検知。
-    static private void _stateMachine_StateChanged()
+    static private void stateMachine_StateChanged()
     {
         // State変更時の処理を実装
         _currentState = _talkStateMachine.GetText();
@@ -60,7 +60,7 @@ class Program
     {
         _talkStateMachine.Init();
         _currentState = _talkStateMachine.GetText();
-        _talkStateMachine.StateChanged += _stateMachine_StateChanged;
+        _talkStateMachine.StateChanged += stateMachine_StateChanged;
 
         Console.WriteLine("Enter '1' for State Change, '2' for Exec Process X, or 'exit' to quit:");
         Console.WriteLine(_currentState);

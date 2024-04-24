@@ -1,6 +1,5 @@
 namespace state_pattern.States
 {
-  // 状態を同一視するためのインターフェース
   public sealed class IdleTalkState : IState
   {
     // シングルトン
