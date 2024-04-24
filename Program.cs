@@ -44,16 +44,6 @@ class Program
         }
     }
 
-    static void Init()
-    {
-        _talkStateMachine.Init();
-        _currentState = _talkStateMachine.GetText();
-        _talkStateMachine.StateChanged += _stateMachine_StateChanged;
-
-        Console.WriteLine("Enter '1' for State Change, '2' for Exec Process A, or 'exit' to quit:");
-        Console.WriteLine(_currentState);
-    }
-
     // ObserverパターンでState変更タイミングを検知。
     static private void _stateMachine_StateChanged()
     {
@@ -64,4 +54,16 @@ class Program
         // Stateが変化したら、それぞれ各種State毎のEnter()処理を実行する
         _talkStateMachine.Enter();
     }
+
+
+    static void Init()
+    {
+        _talkStateMachine.Init();
+        _currentState = _talkStateMachine.GetText();
+        _talkStateMachine.StateChanged += _stateMachine_StateChanged;
+
+        Console.WriteLine("Enter '1' for State Change, '2' for Exec Process A, or 'exit' to quit:");
+        Console.WriteLine(_currentState);
+    }
+
 }
