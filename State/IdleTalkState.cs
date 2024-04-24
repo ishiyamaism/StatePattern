@@ -3,6 +3,10 @@ namespace state_pattern.States
   // 状態を同一視するためのインターフェース
   public sealed class IdleTalkState : IState
   {
+    // シングルトン
+    private IdleTalkState() { }
+    public static IdleTalkState Instance { get; } = new IdleTalkState();
+
     public string GetStateText()
     {
       return "IdleTalkStateなう";
@@ -21,7 +25,7 @@ namespace state_pattern.States
     public void OnUpdate(TalkStateMachine talkStateMachine)
     {
       // 音声認識開始のトリガーを通知するなどして UserSpeakState に遷移する、など
-      talkStateMachine.ChangeState(new UserSpeakState());
+      talkStateMachine.ChangeState(UserSpeakState.Instance);
     }
 
     public void OnExit(TalkStateMachine talkStateMachine)

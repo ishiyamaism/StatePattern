@@ -2,9 +2,12 @@ using state_pattern.WebRequest;
 
 namespace state_pattern.States
 {
-  // 状態を同一視するためのインターフェース
   public sealed class UserSpeakState : IState
   {
+    // シングルトン
+    private UserSpeakState() { }
+    public static UserSpeakState Instance { get; } = new UserSpeakState();
+
     public string GetStateText()
     {
       return "UserSpeakStateなう";
@@ -24,7 +27,7 @@ namespace state_pattern.States
     public void OnUpdate(TalkStateMachine talkStateMachine)
     {
       // 次Stateへの遷移
-      talkStateMachine.ChangeState(new AvatarThinkingState());
+      talkStateMachine.ChangeState(AvatarThinkingState.Instance);
     }
 
     public void OnExit(TalkStateMachine talkStateMachine)

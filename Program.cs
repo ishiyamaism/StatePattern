@@ -62,8 +62,7 @@ class Program
         _currentState = _talkStateMachine.GetText();
         _talkStateMachine.StateChanged += _stateMachine_StateChanged;
 
-        Console.WriteLine("Enter '1' for State Change, '2' for Exec Process A, or 'exit' to quit:");
+        Console.WriteLine("Enter '1' for State Change, '2' for Exec Process X, or 'exit' to quit:");
         Console.WriteLine(_currentState);
     }
-
 }

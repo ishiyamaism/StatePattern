@@ -3,7 +3,7 @@ namespace state_pattern.States
   // 状態管理のためのクラス
   public sealed class TalkStateMachine
   {
-    private IState _state = new IdleTalkState();
+    private IState _state = IdleTalkState.Instance;
     private readonly string path = "state-information.txt";
 
     // 状態の通信等をする想定(仮にテキストファイル出力)
@@ -17,7 +17,7 @@ namespace state_pattern.States
 
     public void Init()
     {
-      _state = new IdleTalkState();
+      _state = IdleTalkState.Instance;
 
       // 状態通信的処理
       OutputResponse(_state.GetCommand());
