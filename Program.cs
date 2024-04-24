@@ -14,7 +14,6 @@ class Program
 
         // コンソールでの入力をインプットとして処理する
         // 1: State状態変化トリガー
-        // 2: 任意の処理実行
         // exit: 終了
         while (true)
         {
@@ -33,10 +32,7 @@ class Program
                     _talkStateMachine.Update();
 
                     break;
-                case "2":
-                    // 任意の処理実行トリガー発動
-                    //
-                    break;
+
                 default:
                     Console.WriteLine("Invalid input. Please enter '1', '2', or 'exit'.");
                     break;
