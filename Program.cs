@@ -8,10 +8,18 @@ class Program
     static private TalkStateMachine _talkStateMachine = new TalkStateMachine();
     static private string? _currentState;
 
+    static Program()
+    {
+        _talkStateMachine.Init();
+        _currentState = _talkStateMachine.GetText();
+        _talkStateMachine.StateChanged += StateMachine_StateChanged;
+
+        Console.WriteLine("Enter '1' for State Change, '2' for Exec Process X, or 'exit' to quit:");
+        Console.WriteLine(_currentState);
+    }
+
     static void Main(string[] args)
     {
-        Init();
-
         // コンソールでの入力をインプットとして処理する
         // 1: State状態変化トリガー
         // exit: 終了
@@ -41,7 +49,7 @@ class Program
     }
 
     // ObserverパターンでState変更タイミングを検知。
-    static private void stateMachine_StateChanged()
+    static private void StateMachine_StateChanged()
     {
         // State変更時の処理を実装
         _currentState = _talkStateMachine.GetText();
@@ -49,16 +57,5 @@ class Program
 
         // Stateが変化したら、それぞれ各種State毎のEnter()処理を実行する
         _talkStateMachine.Enter();
-    }
-
-
-    static void Init()
-    {
-        _talkStateMachine.Init();
-        _currentState = _talkStateMachine.GetText();
-        _talkStateMachine.StateChanged += stateMachine_StateChanged;
-
-        Console.WriteLine("Enter '1' for State Change, '2' for Exec Process X, or 'exit' to quit:");
-        Console.WriteLine(_currentState);
     }
 }
